@@ -1,6 +1,6 @@
 {
   "name": "mcp-server-db2-luw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for IBM DB2 LUW (Linux/Unix/Windows) — connects via JDBC using a persistent Java gateway subprocess.",
   "type": "module",
   "bin": {
@@ -38,4 +38,3 @@
     "node": ">=18.0.0"
   }
 }
-
