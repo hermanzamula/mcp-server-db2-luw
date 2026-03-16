@@ -1,0 +1,41 @@
+{
+  "name": "mcp-server-db2-luw",
+  "version": "1.0.0",
+  "description": "MCP server for IBM DB2 LUW (Linux/Unix/Windows) — connects via JDBC using a persistent Java gateway subprocess.",
+  "type": "module",
+  "bin": {
+    "mcp-server-db2-luw": "./index.js"
+  },
+  "main": "./index.js",
+  "files": [
+    "index.js",
+    "build.js",
+    "java/Db2Gateway.jar",
+    "java/db2jcc4.jar",
+    "java/src/Db2Gateway.java",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "node build.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ibm",
+    "db2",
+    "db2-luw",
+    "jdbc",
+    "database",
+    "sql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
