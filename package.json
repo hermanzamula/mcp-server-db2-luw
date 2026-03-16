@@ -4,7 +4,7 @@
   "description": "MCP server for IBM DB2 LUW (Linux/Unix/Windows) — connects via JDBC using a persistent Java gateway subprocess.",
   "type": "module",
   "bin": {
-    "mcp-server-db2-luw": "./index.js"
+    "mcp-server-db2-luw": "index.js"
   },
   "main": "./index.js",
   "files": [
