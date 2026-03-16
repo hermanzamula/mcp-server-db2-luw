@@ -11,7 +11,6 @@
     "index.js",
     "build.js",
     "java/Db2Gateway.jar",
-    "java/db2jcc4.jar",
     "java/src/Db2Gateway.java",
     "README.md"
   ],
@@ -38,4 +37,3 @@
     "node": ">=18.0.0"
   }
 }
-

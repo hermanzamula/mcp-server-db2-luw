@@ -40,21 +40,23 @@ java  -version
 
 ## JDBC Driver
 
-The IBM DB2 JDBC driver (`db2jcc4.jar`) is **not committed to git** due to its IBM license, but it is handled automatically:
+The IBM DB2 JDBC driver (`db2jcc4.jar`) is **not committed to git and not published in npm tarballs** due to its IBM license.
 
-| How you get the package | What happens |
-|-------------------------|--------------|
-| `npm install` / `npx` | Driver is **bundled inside the npm tarball** — nothing extra needed |
-| Clone the git repo | Run `npm run build` — downloads `com.ibm.db2:jcc` from **Maven Central** automatically |
+At runtime, the server resolves the driver in this order:
+
+1. `DB2_JDBC_JAR` (user-provided path)
+2. Local legacy paths (`java/db2jcc4.jar` or `java/jcc-<version>.jar`)
+3. Cache path `~/.mcp-server-db2-luw/jdbc/jcc-<version>.jar`
+4. Download `com.ibm.db2:jcc` from Maven Central into the cache path
 
 ### Manual override
 
-If you want to supply your own driver (e.g. a specific version):
+If you want to supply your own driver or control where downloads are cached:
 
 ```bash
-DB2_JDBC_JAR=/path/to/db2jcc4.jar npm run build
-# or override the Maven version downloaded:
-DB2JCC_MAVEN_VERSION=11.5.8.0 npm run build
+DB2_JDBC_JAR=/path/to/db2jcc4.jar npx -y mcp-server-db2-luw
+DB2JCC_MAVEN_VERSION=11.5.8.0 npx -y mcp-server-db2-luw
+DB2JCC_CACHE_DIR=/custom/cache/dir npx -y mcp-server-db2-luw
 ```
 
 ## Usage
@@ -100,6 +102,7 @@ DB2JCC_MAVEN_VERSION=11.5.8.0 npm run build
 | `DB2_USERNAME` | ✓ | — | DB2 username |
 | `DB2_PASSWORD` | ✓ | — | DB2 password |
 | `DB2_SCHEMA` | | — | Default schema for metadata tools |
-| `DB2_JDBC_JAR` | | bundled | Path to a custom `db2jcc4.jar` |
+| `DB2_JDBC_JAR` | | auto-resolved/downloaded | Path to a custom `db2jcc4.jar` |
 | `QUERY_MAX_LIMIT` | | `1000` | Maximum rows returned per query |
 | `DB2JCC_MAVEN_VERSION` | | `11.5.9.0` | Driver version to download if not found locally |
+| `DB2JCC_CACHE_DIR` | | `~/.mcp-server-db2-luw/jdbc` | Directory for downloaded JDBC jars |
